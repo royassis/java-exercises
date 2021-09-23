@@ -8,5 +8,10 @@
 		"prefix": ["fori"],
 		"body": ["for (int ${1:index}=0; ${1:index}<arr.length;${1:index}++) {", "\t$0", "}"],
 		"description": "A for loop."
-	  }
+	  },
+	"Class Main": {
+		"prefix": ["classM"],
+		"body": ["class ${1:className}{", "\tpublic static void main (String[] args){\n\n\t}", "}"],
+		"description": "A for loop."
+	}
 }
