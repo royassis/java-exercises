@@ -1,7 +1,9 @@
 package MatrixPackage;
-import java.util.HashMap;
 
-public class Matrix {
+import java.util.HashMap;
+import java.util.Iterator;
+
+public class Matrix implements Iterable<MatrixEle> {
     Integer[][] matrix;
     Integer c;
     Integer r;
@@ -11,7 +13,6 @@ public class Matrix {
         r = newMatrix.length;
         c = newMatrix[0].length;
     }
-    
 
     public static Matrix generateRandomMatrix(Integer r, Integer c, Integer min, Integer max) {
         Integer[][] matrix = new Integer[r][c];
@@ -22,8 +23,8 @@ public class Matrix {
         return new Matrix(matrix);
     }
 
-    public HashMap<String,MatrixEle> allValidInProximity(Integer i, Integer j) {
-        HashMap<String,MatrixEle> hashMap = new HashMap<String,MatrixEle>();
+    public HashMap<String, MatrixEle> allValidInProximity(Integer i, Integer j) {
+        HashMap<String, MatrixEle> hashMap = new HashMap<String, MatrixEle>();
         hashMap.put("up", up(i));
         hashMap.put("down", down(i));
         hashMap.put("left", left(i));
@@ -72,11 +73,11 @@ public class Matrix {
     }
 
     public Boolean isIndexValid(MatrixEle matrixEle) {
-        return !(matrixEle.getX() >= r | matrixEle.getY()  >= c |matrixEle.getX() < 0 | matrixEle.getY() < 0);
+        return !(matrixEle.getX() >= r | matrixEle.getY() >= c | matrixEle.getX() < 0 | matrixEle.getY() < 0);
     }
 
     public MatrixEle indexToTwo(Integer i) {
-        return new MatrixEle(i / c, i % c );
+        return new MatrixEle(i / c, i % c);
     }
 
     public Integer TwoToOneIndex(Integer i, Integer j) {
@@ -87,15 +88,40 @@ public class Matrix {
         return r * i + j;
     }
 
-    public String toString()  {
+    public String toString() {
 
-        String str ="";
+        String str = "";
         for (int i = 0; i < r * c; i++) {
             str = str + this.matrix[i / c][i % c] + " ";
             if ((i % c) == c - 1) {
-                str = str +"\n";
+                str = str + "\n";
             }
         }
-        return str.substring(0, str.length()-1);
+        return str.substring(0, str.length() - 1);
+    }
+
+    @Override
+    public Iterator<MatrixEle> iterator() {
+        Iterator<MatrixEle> it = new Iterator<MatrixEle>() {
+
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < c;
+            }
+
+            @Override
+            public MatrixEle next() {
+                return indexToTwo(currentIndex);
+
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
+        return it;
     }
 }
