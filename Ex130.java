@@ -51,20 +51,20 @@ public class Ex130 {
                 }
                 return maxDepth;
             }
-            public void printPreorderTraversalBase(Node currentNode){
-                if (currentNode == null){
-                    return;
-                }
+            // public void printPreorderTraversalBase(Node currentNode){
+            //     if (currentNode == null){
+            //         return;
+            //     }
                 
-                if (currentNode.left != null){
-                    printPreorderTraversalBase(currentNode.left);
-                }
-                if (currentNode.right != null){
-                    printPreorderTraversalBase(currentNode.right);
-                }
-                System.out.print(currentNode.val +" ");
+            //     if (currentNode.left != null){
+            //         printPreorderTraversalBase(currentNode.left);
+            //     }
+            //     if (currentNode.right != null){
+            //         printPreorderTraversalBase(currentNode.right);
+            //     }
+            //     System.out.print(currentNode.val +" ");
                
-            }
+            // }
 
         }
 
