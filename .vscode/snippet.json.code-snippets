@@ -1,0 +1,12 @@
+{
+	"For Loop": {
+	  "prefix": ["for", "for-const"],
+	  "body": ["for (const ${2:element} of ${1:array}) {", "\t$0", "}"],
+	  "description": "A for loop."
+	},
+	"Fori": {
+		"prefix": ["fori"],
+		"body": ["for (int ${1:index}=0; ${1:index}<arr.length;${1:index}++) {", "\t$0", "}"],
+		"description": "A for loop."
+	  }
+}

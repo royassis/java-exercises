@@ -16,24 +16,31 @@ public class Ex132 {
     }
     public static Integer getSqueezedArrLength(Integer[] arr, Integer c){
         Integer count =0;
-        Integer last = arr[1];
-        Integer tempCount =1;
-
-        for (Integer n: arr){
-            if (n!=last){
-                tempCount = tempCount >= c ? c : tempCount;
-                count = count + tempCount;
-                tempCount =1;
-            }else{
-                tempCount ++;
+        Integer tempCount = 0;
+        int i= 0;
+        int j= 0 ;
+        
+        while (i < arr.length){
+            for (j=i; j<= arr.length;j++) {
+                if (j==arr.length || arr[i] != arr[j]){
+                    i = j ;
+                    break;
+                }
+                else{
+                    tempCount++;
+                }
             }
-            last = n; 
+            count = count + (tempCount > c ? c : tempCount);
+            tempCount =0;
         }
-        return count;
+
+        return count ;
     }
+    
+
 
     public static void main(String[] args) {
-        Integer[] arr = {1,2,3,3,3,4,5,6 , 7};
+        Integer[] arr = {1,2,3,3,3,4,4,5,6};
         System.out.println(String.format("Array: %s have %d unique numbers", Arrays.toString(arr), getSqueezedArrLength(arr, 2)));
     }
 }
