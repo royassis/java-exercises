@@ -2,6 +2,6 @@ package MatrixPackage;
 
 public class Utils {
     public  static Integer getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
+        return (int) ((Math.random() * (max+1 - min)) + min);
     }
 }
