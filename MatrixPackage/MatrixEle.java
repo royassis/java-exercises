@@ -7,6 +7,10 @@ public class MatrixEle {
         x = newX;
         y = newY;
     }
+    public MatrixEle(MatrixEle matrixEle){
+        x = matrixEle.getX();
+        y = matrixEle.getY();
+    }
 
     public Integer getX() {
         return x;
@@ -19,6 +23,21 @@ public class MatrixEle {
     }
     public void setY(Integer y) {
         this.y = y;
+    }
+    public void addX() {
+        this.x++;
+    }
+    public void addY() {
+        this.y++;
+    }
+    public void reduceX() {
+        this.x--;
+    }
+    public void reduceY() {
+        this.y--;
+    }
+    public String toString() {
+        return String.format("(%d,%d)", getX(), getY());
     }
 
 }

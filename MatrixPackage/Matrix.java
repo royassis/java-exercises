@@ -1,5 +1,8 @@
 package MatrixPackage;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Matrix {
     Integer[][] matrix;
     Integer c;
@@ -10,6 +13,7 @@ public class Matrix {
         r = newMatrix.length;
         c = newMatrix[0].length;
     }
+    
 
     public static Matrix generateRandomMatrix(Integer r, Integer c, Integer min, Integer max) {
         Integer[][] matrix = new Integer[r][c];
@@ -20,52 +24,61 @@ public class Matrix {
         return new Matrix(matrix);
     }
 
-    public Integer[][] allValidInProximity(Integer i, Integer j) {
-        return new Integer[][] { up(i), down(i), left(i), right(i) };
+    public HashMap<String,MatrixEle> allValidInProximity(Integer i, Integer j) {
+        HashMap<String,MatrixEle> hashMap = new HashMap();
+        hashMap.put("up", up(i));
+        hashMap.put("down", down(i));
+        hashMap.put("left", left(i));
+        hashMap.put("right", right(i));
+        return hashMap;
     }
 
-    public Integer[] up(Integer i) {
-        Integer[] two = indexToTwo(i);
-        Integer[] arr = new Integer[] { two[0] - 1, two[1] };
-        return directionBase(arr, i);
+    public MatrixEle up(Integer i) {
+        MatrixEle matrixEle = indexToTwo(i);
+        MatrixEle newMatrixEle = new MatrixEle(matrixEle);
+        newMatrixEle.reduceY();
+        return directionBase(newMatrixEle, matrixEle);
     }
 
-    public Integer[] down(Integer i) {
-        Integer[] two = indexToTwo(i);
-        Integer[] arr = new Integer[] { two[0] + 1, two[1] };
-        return directionBase(arr, i);
+    public MatrixEle down(Integer i) {
+        MatrixEle matrixEle = indexToTwo(i);
+        MatrixEle newMatrixEle = new MatrixEle(matrixEle);
+        newMatrixEle.addY();
+        return directionBase(newMatrixEle, matrixEle);
     }
 
-    public Integer[] left(Integer i) {
-        Integer[] two = indexToTwo(i);
-        Integer[] arr = new Integer[] { two[0], two[1] - 1 };
-        return directionBase(arr, i);
+    public MatrixEle left(Integer i) {
+        MatrixEle matrixEle = indexToTwo(i);
+        MatrixEle newMatrixEle = new MatrixEle(matrixEle);
+        newMatrixEle.reduceX();
+        return directionBase(newMatrixEle, matrixEle);
     }
 
-    public Integer[] right(Integer i) {
-        Integer[] two = indexToTwo(i);
-        Integer[] arr = new Integer[] { two[0], two[1] + 1 };
-        return directionBase(arr, i);
+    public MatrixEle right(Integer i) {
+        MatrixEle matrixEle = indexToTwo(i);
+        MatrixEle newMatrixEle = new MatrixEle(matrixEle);
+        newMatrixEle.addX();
+        return directionBase(newMatrixEle, matrixEle);
     }
 
-    public Integer[] directionBase(Integer[] arr, Integer i) {
-        if (isIndexValid(arr[0], arr[1]) && isIndexValid(i)) {
-            return arr;
+    public MatrixEle directionBase(MatrixEle matrixEleNew, MatrixEle matrixEleBase) {
+        if (isIndexValid(matrixEleNew) && isIndexValid(matrixEleBase)) {
+            return matrixEleNew;
         }
         return null;
     }
 
     public Boolean isIndexValid(Integer i) {
-        Integer[] two = indexToTwo(i);
-        return isIndexValid(two[0], two[1]);
+        MatrixEle matrixEle = indexToTwo(i);
+        return isIndexValid(matrixEle);
     }
 
-    public Boolean isIndexValid(Integer i, Integer j) {
-        return !(i >= r | j >= c | i < 0 | j < 0);
+    public Boolean isIndexValid(MatrixEle matrixEle) {
+        return !(matrixEle.getX() >= r | matrixEle.getY()  >= c |matrixEle.getX() < 0 | matrixEle.getY() < 0);
     }
 
-    public Integer[] indexToTwo(Integer i) {
-        return new Integer[] { i / c, i % c };
+    public MatrixEle indexToTwo(Integer i) {
+        return new MatrixEle(i / c, i % c );
     }
 
     public Integer TwoToOneIndex(Integer i, Integer j) {
@@ -76,13 +89,15 @@ public class Matrix {
         return r * i + j;
     }
 
-    void printMatrix() {
+    public String toString()  {
 
+        String str ="";
         for (int i = 0; i < r * c; i++) {
-            System.out.print(this.matrix[i / c][i % c] + " ");
+            str = str + this.matrix[i / c][i % c] + " ";
             if ((i % c) == c - 1) {
-                System.out.println();
+                str = str +"\n";
             }
         }
+        return str.substring(0, str.length()-1);
     }
 }
