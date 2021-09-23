@@ -8,5 +8,6 @@ public class Ex69
         Scanner inputScanner = new Scanner(System.in);
         String input = inputScanner.nextLine();
         System.out.println(input.substring(0,input.length()/2));
+        inputScanner.close();
     }
 }

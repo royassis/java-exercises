@@ -11,7 +11,7 @@ public class Ex67
     public static void main(String[] args){
         String out ="";
         String s = "Python 3.0";
-        ArrayList<String> arrayList = new ArrayList();
+        ArrayList<String> arrayList = new ArrayList<String>();
         Collections.addAll(arrayList, s.split(" "));
         
         arrayList.add(arrayList.size()/2, "newele");

@@ -14,6 +14,6 @@ public class Ex72
         }else{
             System.out.println(stringA.substring(0,3));
         }
-
+        inputScanner.close();
     }
 }

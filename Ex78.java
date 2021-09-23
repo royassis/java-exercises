@@ -1,6 +1,5 @@
-import java.util.Scanner;
 import java.util.*;
-import java.util.function.Predicate;
+
 
 public class Ex78
 {  

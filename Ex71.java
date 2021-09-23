@@ -11,6 +11,6 @@ public class Ex71
             System.exit(1);
         }
         System.out.println(stringA.substring(1)+stringB.substring(1));
-        
+        inputScanner.close();
     }
 }

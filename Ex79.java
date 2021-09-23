@@ -1,6 +1,5 @@
-import java.util.Scanner;
 import java.util.*;
-import java.util.function.Predicate;
+
 
 public class Ex79
 {  
@@ -14,7 +13,7 @@ public class Ex79
         
     }
     static ArrayList<Integer> rotateLeft(ArrayList<Integer> inputList){
-        ArrayList<Integer> shiftedList = new ArrayList();
+        ArrayList<Integer> shiftedList = new ArrayList<Integer> ();
         for (int i =1; i<inputList.size(); i++){
             shiftedList.add(inputList.get(i));     
         }

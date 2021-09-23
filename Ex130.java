@@ -29,10 +29,10 @@ public class Ex130 {
                 currentNode = currentNode.val < newNode.val ? currentNode.right : currentNode.left;
                 this.addBase(currentNode, newNode);
             }
-            public void printPreorderTraversal(){
-                printPreorderTraversalBase(this.root);
-                System.out.println();
-            }
+            // public void printPreorderTraversal(){
+            //     printPreorderTraversalBase(this.root);
+            //     System.out.println();
+            // }
             public Integer getMaxDepth(){
                 return getMaxDepthBase(this.root, 1, 0);
             }

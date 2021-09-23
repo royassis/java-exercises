@@ -6,7 +6,6 @@ public class Ex73
         Scanner inputScanner = new Scanner(System.in);
         String stringA = inputScanner.nextLine();
         String stringB = inputScanner.nextLine();
-        String out = "";
         if (stringA.length() == 0  ){
             stringA = "#";
         }else{
@@ -19,5 +18,6 @@ public class Ex73
             stringB = stringB.substring(stringB.length()-1);
         }
         System.out.println(stringA+stringB);
+        inputScanner.close();
     }
 }

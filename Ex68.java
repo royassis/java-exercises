@@ -16,5 +16,6 @@ public class Ex68
             out = out +input.substring(input.length()-3);
         }
         System.out.println(out);
+        inputScanner.close();
     }
 }

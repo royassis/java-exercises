@@ -8,7 +8,7 @@ public class Ex62
        Integer b = 1;
        Integer c = 2;
        
-       ArrayList<Integer> list= new ArrayList();
+       ArrayList<Integer> list= new ArrayList<Integer>();
        list.add(a);
        list.add(b);
        list.add(c);

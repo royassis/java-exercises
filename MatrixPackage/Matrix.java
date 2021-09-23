@@ -1,6 +1,4 @@
 package MatrixPackage;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Matrix {
@@ -25,7 +23,7 @@ public class Matrix {
     }
 
     public HashMap<String,MatrixEle> allValidInProximity(Integer i, Integer j) {
-        HashMap<String,MatrixEle> hashMap = new HashMap();
+        HashMap<String,MatrixEle> hashMap = new HashMap<String,MatrixEle>();
         hashMap.put("up", up(i));
         hashMap.put("down", down(i));
         hashMap.put("left", left(i));

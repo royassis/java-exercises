@@ -1,6 +1,5 @@
 import java.util.*;
 import java.lang.Math;
-import java.lang.Runtime;
 
 public class Ex63
 {
@@ -36,6 +35,7 @@ public class Ex63
             }else{
                 System.out.println(Math.max(a,b));
             }
+            scanner.close();
         
         }    
     }

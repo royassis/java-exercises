@@ -16,5 +16,6 @@ public class Ex70
         }else{
             System.out.println(stringA+stringB+stringA);
         }
+        inputScanner.close();
     }
 }

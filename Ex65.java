@@ -12,6 +12,6 @@ public class Ex65
         
         System.out.println (reminder);
         
-        
+        scanner.close();
    }
 }

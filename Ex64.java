@@ -23,5 +23,6 @@ public class Ex64
             a = a/10;
         }
         System.out.println("false");
+        scanner.close();
     }
 }
