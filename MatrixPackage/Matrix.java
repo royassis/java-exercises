@@ -108,12 +108,12 @@ public class Matrix implements Iterable<MatrixEle> {
 
             @Override
             public boolean hasNext() {
-                return currentIndex < c;
+                return currentIndex < c*r;
             }
 
             @Override
             public MatrixEle next() {
-                return indexToTwo(currentIndex);
+                return indexToTwo(currentIndex++);
 
             }
 
