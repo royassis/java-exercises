@@ -8,19 +8,39 @@ class Test {
         System.out.println(matrix + "\n");
 
         Integer n = 11;
-        System.out.println("current index: " + matrix.indexToTwo(n));
-        System.out.println("right: " + matrix.right(n));
-        System.out.println("left: " + matrix.left(n));
-        System.out.println("up: " + matrix.up(n));
-        System.out.println("down: " + matrix.down(n));
+        MatrixEle ele = matrix.indexToTwo(n);
+        System.out.println("current index: " + ele);
+        System.out.println("right: " + matrix.right(ele));
+        System.out.println("left: " + matrix.left(ele));
+        System.out.println("up: " + matrix.up(ele));
+        System.out.println("down: " + matrix.down(ele));
+        System.out.println();
 
-        HashMap<String, MatrixEle> hashMap = matrix.allValidInProximity(0, 0);
-
-        System.out.println("");
+        HashMap<String, MatrixEle> hashMap = matrix.allValidInProximity(ele);
         System.out.println(hashMap);
+        System.out.println();
 
-        for (MatrixEle ele : matrix) {
-            System.out.println(ele);
+        MatrixEle matrixEle = new MatrixEle();
+        while (matrixEle != null ){
+            String p = String.format("%s - %d", matrixEle, matrix.valueAtElement(matrixEle));
+            System.out.println(p);
+            if (matrix.right(matrixEle) == null && matrix.down(matrixEle) == null){
+                matrixEle = null;
+                break;
+            }
+            else if (matrix.right(matrixEle) != null && matrix.down(matrixEle) != null){
+                if (matrix.valueAtElement(matrix.right(matrixEle)) < matrix.valueAtElement(matrix.down(matrixEle))){
+                    matrixEle.addX();
+                }else{
+                    matrixEle.addY();
+                }
+            }else if(matrix.down(matrixEle) != null){
+                matrixEle.addY();
+            }else{
+                matrixEle.addX();
+            }
         }
     }
 }
+
+

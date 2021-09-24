@@ -7,11 +7,13 @@ public class Matrix implements Iterable<MatrixEle> {
     Integer[][] matrix;
     Integer c;
     Integer r;
+    Integer size;
 
     public Matrix(Integer[][] newMatrix) {
         matrix = newMatrix;
         r = newMatrix.length;
         c = newMatrix[0].length;
+        size = c*r;
     }
 
     public static Matrix generateRandomMatrix(Integer r, Integer c, Integer min, Integer max) {
@@ -23,38 +25,34 @@ public class Matrix implements Iterable<MatrixEle> {
         return new Matrix(matrix);
     }
 
-    public HashMap<String, MatrixEle> allValidInProximity(Integer i, Integer j) {
+    public HashMap<String, MatrixEle> allValidInProximity(MatrixEle matrixEle) {
         HashMap<String, MatrixEle> hashMap = new HashMap<String, MatrixEle>();
-        hashMap.put("up", up(i));
-        hashMap.put("down", down(i));
-        hashMap.put("left", left(i));
-        hashMap.put("right", right(i));
+        hashMap.put("up", up(matrixEle));
+        hashMap.put("down", down(matrixEle));
+        hashMap.put("left", left(matrixEle));
+        hashMap.put("right", right(matrixEle));
         return hashMap;
     }
 
-    public MatrixEle up(Integer i) {
-        MatrixEle matrixEle = indexToTwo(i);
+    public MatrixEle up(MatrixEle matrixEle) {
         MatrixEle newMatrixEle = new MatrixEle(matrixEle);
         newMatrixEle.reduceY();
         return directionBase(newMatrixEle, matrixEle);
     }
 
-    public MatrixEle down(Integer i) {
-        MatrixEle matrixEle = indexToTwo(i);
+    public MatrixEle down(MatrixEle matrixEle) {
         MatrixEle newMatrixEle = new MatrixEle(matrixEle);
         newMatrixEle.addY();
         return directionBase(newMatrixEle, matrixEle);
     }
 
-    public MatrixEle left(Integer i) {
-        MatrixEle matrixEle = indexToTwo(i);
+    public MatrixEle left(MatrixEle matrixEle) {
         MatrixEle newMatrixEle = new MatrixEle(matrixEle);
         newMatrixEle.reduceX();
         return directionBase(newMatrixEle, matrixEle);
     }
 
-    public MatrixEle right(Integer i) {
-        MatrixEle matrixEle = indexToTwo(i);
+    public MatrixEle right(MatrixEle matrixEle) {
         MatrixEle newMatrixEle = new MatrixEle(matrixEle);
         newMatrixEle.addX();
         return directionBase(newMatrixEle, matrixEle);
@@ -98,6 +96,12 @@ public class Matrix implements Iterable<MatrixEle> {
             }
         }
         return str.substring(0, str.length() - 1);
+    }
+    public Integer valueAtElement(MatrixEle matrixEle){
+        if (isIndexValid(matrixEle)){
+            return matrix[matrixEle.getX()][matrixEle.getY()];
+        }
+        return null;
     }
 
     @Override

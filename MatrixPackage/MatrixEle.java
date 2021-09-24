@@ -11,6 +11,15 @@ public class MatrixEle {
         x = matrixEle.getX();
         y = matrixEle.getY();
     }
+    public MatrixEle(){
+        x = 0;
+        y = 0;
+    }
+    public MatrixEle reset(){
+        setX(0);
+        setY(0);
+        return this;
+    }
 
     public Integer getX() {
         return x;
@@ -38,6 +47,9 @@ public class MatrixEle {
     }
     public String toString() {
         return String.format("(%d,%d)", getX(), getY());
+    }
+    public Boolean equals(MatrixEle matrixEle){
+        return this.x == matrixEle.x && this.y == matrixEle.y;
     }
 
 }
