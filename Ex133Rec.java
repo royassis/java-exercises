@@ -4,7 +4,7 @@ import MatrixPackage.*;
 
 class Ex133Rec {
     public static void main(String[] args) {
-        Matrix matrix = Matrix.generateRandomMatrix(3, 3, 1, 6);
+        Matrix matrix = Matrix.generateRandomMatrix(3, 4, 1, 6);
         System.out.println(matrix);
 
         System.out.println(getMinPathSumOfMatrix(matrix));
