@@ -3,7 +3,7 @@ package MatrixPackage;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class Matrix implements Iterable<MatrixEle> {
+public class Matrix implements Iterable<MatrixEle>{
     Integer[][] matrix;
     Integer c;
     Integer r;
