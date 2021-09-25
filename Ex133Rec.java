@@ -31,12 +31,12 @@ class Ex133Rec {
 
         Stream<Integer> s= Stream.of(resultsA,resultsB);
         Optional<Integer> o = s.collect(Collectors.maxBy(new IntegerComparator()));
-        if (resultsA == null){
-            return resultsB;
-        }
-        else if (resultsB == null){
-            return resultsA;
-        }
+        // if (resultsA == null){
+        //     return resultsB;
+        // }
+        // else if (resultsB == null){
+        //     return resultsA;
+        // }
         return (o.get());
     }
 
