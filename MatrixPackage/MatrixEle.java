@@ -24,26 +24,32 @@ public class MatrixEle {
     public Integer getX() {
         return x;
     }
-    public void setX(Integer x) {
+    public MatrixEle setX(Integer x) {
         this.x = x;
+        return this;
     }
     public Integer getY() {
         return y;
     }
-    public void setY(Integer y) {
+    public MatrixEle setY(Integer y) {
         this.y = y;
+        return this;
     }
-    public void addX() {
+    public MatrixEle addX() {
         this.x++;
+        return this;
     }
-    public void addY() {
+    public MatrixEle addY() {
         this.y++;
+        return this;
     }
-    public void reduceX() {
+    public MatrixEle reduceX() {
         this.x--;
+        return this;
     }
-    public void reduceY() {
+    public MatrixEle reduceY() {
         this.y--;
+        return this;
     }
     public String toString() {
         return String.format("(%d,%d)", getX(), getY());

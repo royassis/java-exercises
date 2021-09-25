@@ -15,6 +15,9 @@ public class Matrix implements Iterable<MatrixEle> {
         c = newMatrix[0].length;
         size = c*r;
     }
+    public Integer getSize(){
+        return this.size;
+    }
 
     public static Matrix generateRandomMatrix(Integer r, Integer c, Integer min, Integer max) {
         Integer[][] matrix = new Integer[r][c];

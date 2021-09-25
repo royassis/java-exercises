@@ -4,11 +4,10 @@ import java.util.HashMap;
 
 class Test {
     public static void main(String[] args) {
-        Matrix matrix = Matrix.generateRandomMatrix(3, 4, 0, 6);
+        Matrix matrix = Matrix.generateRandomMatrix(10, 10, 0, 6);
         System.out.println(matrix + "\n");
 
-        Integer n = 11;
-        MatrixEle ele = matrix.indexToTwo(n);
+        MatrixEle ele = matrix.indexToTwo(matrix.size-1);
         System.out.println("current index: " + ele);
         System.out.println("right: " + matrix.right(ele));
         System.out.println("left: " + matrix.left(ele));
@@ -21,6 +20,7 @@ class Test {
         System.out.println();
 
         MatrixEle matrixEle = new MatrixEle();
+
         while (matrixEle != null ){
             String p = String.format("%s - %d", matrixEle, matrix.valueAtElement(matrixEle));
             System.out.println(p);
@@ -43,4 +43,4 @@ class Test {
     }
 }
 
-
+// "↓" "→"
