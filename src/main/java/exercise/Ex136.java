@@ -3,7 +3,7 @@ import java.util.*;
 
 import matrixpackge.*;
 
-class Ex133Rec {
+class Ex136 {
     public static void main(String[] args) {
         Matrix matrix = Matrix.generateRandomMatrix(3, 4, 1, 6);
         System.out.println(matrix);

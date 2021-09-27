@@ -21,6 +21,9 @@ public class MatrixEle {
         setY(0);
         return this;
     }
+    public MatrixEle getNextEle(Integer i, Integer j){
+        return new MatrixEle(this.getX()+i, this.getY()+j);
+    }
 
     public Integer getX() {
         return x;
