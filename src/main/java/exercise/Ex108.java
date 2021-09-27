@@ -1,4 +1,4 @@
-package exercise; 
+package exercise;
 
 public class Ex108 {
     public static void main(String[] args) throws InterruptedException {
@@ -15,7 +15,7 @@ public class Ex108 {
         Integer sum = 0;
         while (n > 0) {
             sum = sum + n % 10;
-            n = n /10;
+            n = n / 10;
         }
         return sum;
     }

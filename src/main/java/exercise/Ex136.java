@@ -1,4 +1,5 @@
 package exercise;
+
 import java.util.*;
 
 import matrixpackge.*;
@@ -59,7 +60,7 @@ class Ex136 {
     }
 
     static void getAllMatrixPathsBase(Matrix matrix, MatrixEle currentLocation, ArrayList<ArrayList<MatrixEle>> arrList,
-            int loc) {
+                                      int loc) {
 
         arrList.get(loc).add(currentLocation);
 
@@ -94,7 +95,7 @@ class Ex136 {
 
 
         ((ArrayList<MatrixEle>) arrList.get(loc)).add(currentLocation);
-        
+
         if (matrix.down(currentLocation) == null && matrix.right(currentLocation) == null) {
             return;
         }
@@ -102,7 +103,7 @@ class Ex136 {
         int a = loc;
         int b = loc;
         if (matrix.right(currentLocation) != null && matrix.down(currentLocation) != null) {
-            ArrayList<Object> newArr = new ArrayList<Object>( (ArrayList<Object>) arrList.get(loc));
+            ArrayList<Object> newArr = new ArrayList<Object>((ArrayList<Object>) arrList.get(loc));
             arrList.add(newArr);
             b = arrList.size() - 1;
         }

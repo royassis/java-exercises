@@ -1,10 +1,10 @@
-package exercise; 
+package exercise;
 
 import java.util.ArrayList;
 
 public class Ex106 {
     public static void main(String[] args) throws InterruptedException {
-        int[] arr = { 10, 5, 10 };
+        int[] arr = {10, 5, 10};
         ArrayList<Integer> arrList = new ArrayList<Integer>();
         int n = 10;
         boolean flag = false;

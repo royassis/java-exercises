@@ -17,14 +17,15 @@ public class Ex135 {
         removeDuplicatesFromSortedLinkedList(ll);
 
         System.out.println(ll);
- 
+
     }
-    static void removeDuplicatesFromSortedLinkedList(LinkedList ll){
+
+    static void removeDuplicatesFromSortedLinkedList(LinkedList ll) {
         Node currentNode = ll.getHead();
         Node firstNodeInStrip = currentNode;
-        
-        while (currentNode != null){
-            if (firstNodeInStrip.getVal() != currentNode.getVal()){
+
+        while (currentNode != null) {
+            if (firstNodeInStrip.getVal() != currentNode.getVal()) {
                 firstNodeInStrip.setNext(currentNode);
                 firstNodeInStrip = currentNode;
             }

@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.HashSet;
 
 // Write a Java program to get the preorder traversal of its nodes' values of a given a binary tree
- public class GetNextLargestElementIndex {
+public class GetNextLargestElementIndex {
 
     public static Integer[][] getMatrix(Integer c, Integer r, Integer min, Integer max) {
         Integer[][] matrix = new Integer[c][r];
@@ -38,7 +38,7 @@ import java.util.HashSet;
         HashSet<Integer> prevLocations = new HashSet<Integer>();
         while (i != c * c - 1) {
             sum = sum + matrix[i % c][i / c];
-            prevLocations.add((Integer) i);
+            prevLocations.add(i);
             i = getNextLargestElementIndex(matrix, i, prevLocations);
             System.out.println(String.format("(%d,%d)", i / c + 1, i % c + 1));
             TimeUnit.MILLISECONDS.sleep(500);
@@ -49,28 +49,28 @@ import java.util.HashSet;
     static Integer getNextLargestElementIndex(Integer[][] matrix, Integer currentIndex, HashSet<Integer> prevLocations) {
         int matrixDim = matrix.length;
 
-        Integer up = ((currentIndex - matrixDim)/matrixDim > 0) ?  (currentIndex - matrixDim) : null;
-        Integer down = ((currentIndex + matrixDim)/matrixDim < matrixDim) ?  (currentIndex + matrixDim) : null;;
-        Integer left = (currentIndex%matrixDim - 1 > 0) ?  currentIndex-1 : null;;
-        Integer right = (currentIndex%matrixDim + 1 < matrixDim) ?  currentIndex+1 : null;;
+        Integer up = ((currentIndex - matrixDim) / matrixDim > 0) ? (currentIndex - matrixDim) : null;
+        Integer down = ((currentIndex + matrixDim) / matrixDim < matrixDim) ? (currentIndex + matrixDim) : null;
+        Integer left = (currentIndex % matrixDim - 1 > 0) ? currentIndex - 1 : null;
+        Integer right = (currentIndex % matrixDim + 1 < matrixDim) ? currentIndex + 1 : null;
 
         Integer[] possibleIndices = {up, down, left, right};
 
         Integer maxPos = null;
         Integer maxVal = null;
-        for (Integer p : possibleIndices){
-            if (p != null && !prevLocations.contains(p)){
+        for (Integer p : possibleIndices) {
+            if (p != null && !prevLocations.contains(p)) {
                 maxPos = p;
-                maxVal = matrix[p/matrixDim][p%matrixDim];
+                maxVal = matrix[p / matrixDim][p % matrixDim];
             }
         }
 
         for (int j = 0; j < possibleIndices.length; j++) {
-            if (possibleIndices[j] != null && !prevLocations.contains(currentIndex)){
+            if (possibleIndices[j] != null && !prevLocations.contains(currentIndex)) {
                 Integer nextIndex = possibleIndices[j];
                 Integer c = nextIndex / matrixDim;
                 Integer r = nextIndex % matrixDim;
-                if ( matrix[c][r] >= maxVal) {
+                if (matrix[c][r] >= maxVal) {
                     maxPos = nextIndex;
                     maxVal = matrix[c][r];
                 }

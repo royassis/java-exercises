@@ -1,4 +1,5 @@
 package exercise;
+
 import java.util.Arrays;
 
 // 124. Write a Java program to find the index of a value in a sorted array. If the value does not find return the index where it would be if it were inserted in order
@@ -18,23 +19,23 @@ public class Ex124 {
     }
 
 
-    public static Integer getIndexInArr(Integer[] arr, Integer ele){
-        Integer start =0;
+    public static Integer getIndexInArr(Integer[] arr, Integer ele) {
+        Integer start = 0;
         Integer end = arr.length;
-        Integer mid = (start+end)/2;
-        if (ele > arr[end-1]){
+        Integer mid = (start + end) / 2;
+        if (ele > arr[end - 1]) {
             return end;
         }
-        
-        while (start<=end){
-            mid = (start+end)/2;
-            if (arr[mid] == ele){
+
+        while (start <= end) {
+            mid = (start + end) / 2;
+            if (arr[mid] == ele) {
                 return mid;
-            }else if(arr[mid] > ele){
-                end = mid-1;
-            }else{
-                start = mid +1 ;
-            }  
+            } else if (arr[mid] > ele) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
         }
         return mid + 1;
     }
@@ -42,9 +43,10 @@ public class Ex124 {
     public static Integer getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
-    public static Integer[] getRandomArr(int size, int min, int max){
+
+    public static Integer[] getRandomArr(int size, int min, int max) {
         Integer[] arr = new Integer[size];
-        for (int i=0; i< size ; i++){
+        for (int i = 0; i < size; i++) {
             arr[i] = getRandomNumber(min, max);
         }
         return arr;

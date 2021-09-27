@@ -15,9 +15,10 @@ public class Matrix {
         matrix = newMatrix;
         r = newMatrix.length;
         c = newMatrix[0].length;
-        size = c*r;
+        size = c * r;
     }
-    public Integer getSize(){
+
+    public Integer getSize() {
         return this.size;
     }
 
@@ -102,8 +103,9 @@ public class Matrix {
         }
         return str.substring(0, str.length() - 1);
     }
-    public Integer valueAtElement(MatrixEle matrixEle){
-        if (isIndexValid(matrixEle)){
+
+    public Integer valueAtElement(MatrixEle matrixEle) {
+        if (isIndexValid(matrixEle)) {
             return matrix[matrixEle.getX()][matrixEle.getY()];
         }
         return null;
@@ -116,7 +118,7 @@ public class Matrix {
 
             @Override
             public boolean hasNext() {
-                return currentIndex < c*r;
+                return currentIndex < c * r;
             }
 
             @Override

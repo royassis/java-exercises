@@ -1,4 +1,4 @@
-package exercise; 
+package exercise;
 
 public class Ex110 {
     public static void main(String[] args) {

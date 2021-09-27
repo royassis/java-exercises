@@ -1,10 +1,11 @@
 package exercise;
+
 public class Ex99 {
     public static void main(String[] args) {
 
         int n = 20;
         boolean any_pair_flag = false;
-        int[] arr = { 20, 20, 0, 20 };
+        int[] arr = {20, 20, 0, 20};
 
         if ((arr[0] == n && arr[1] != n) | (arr[arr.length - 1] == n && arr[arr.length - 2] != n)) {
             System.out.println("no good");
@@ -27,12 +28,13 @@ public class Ex99 {
             System.out.println("no good");
         }
     }
-    static boolean intComparator(int[] arr, int n, int ...indices ){
+
+    static boolean intComparator(int[] arr, int n, int... indices) {
         boolean result = false;
-        for (int i : indices){
-            if (arr[i] == n){
+        for (int i : indices) {
+            if (arr[i] == n) {
                 result = true;
-            }else{
+            } else {
                 result = false;
                 break;
             }

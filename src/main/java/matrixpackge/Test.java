@@ -7,7 +7,7 @@ class Test {
         Matrix matrix = Matrix.generateRandomMatrix(10, 10, 0, 6);
         System.out.println(matrix + "\n");
 
-        MatrixEle ele = matrix.indexToTwo(matrix.size-1);
+        MatrixEle ele = matrix.indexToTwo(matrix.size - 1);
         System.out.println("current index: " + ele);
         System.out.println("right: " + matrix.right(ele));
         System.out.println("left: " + matrix.left(ele));
@@ -21,22 +21,21 @@ class Test {
 
         MatrixEle matrixEle = new MatrixEle();
 
-        while (matrixEle != null ){
+        while (matrixEle != null) {
             String p = String.format("%s - %d", matrixEle, matrix.valueAtElement(matrixEle));
             System.out.println(p);
-            if (matrix.right(matrixEle) == null && matrix.down(matrixEle) == null){
+            if (matrix.right(matrixEle) == null && matrix.down(matrixEle) == null) {
                 matrixEle = null;
                 break;
-            }
-            else if (matrix.right(matrixEle) != null && matrix.down(matrixEle) != null){
-                if (matrix.valueAtElement(matrix.right(matrixEle)) < matrix.valueAtElement(matrix.down(matrixEle))){
+            } else if (matrix.right(matrixEle) != null && matrix.down(matrixEle) != null) {
+                if (matrix.valueAtElement(matrix.right(matrixEle)) < matrix.valueAtElement(matrix.down(matrixEle))) {
                     matrixEle.addX();
-                }else{
+                } else {
                     matrixEle.addY();
                 }
-            }else if(matrix.down(matrixEle) != null){
+            } else if (matrix.down(matrixEle) != null) {
                 matrixEle.addY();
-            }else{
+            } else {
                 matrixEle.addX();
             }
         }

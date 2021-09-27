@@ -1,4 +1,5 @@
 package exercise;
+
 import matrixpackge.*;
 
 // Ex133 Write a Java program to find a path from top left to bottom in right direction which minimizes the sum of all numbers along its path.
@@ -9,22 +10,21 @@ class Ex133 {
 
         MatrixEle matrixEle = new MatrixEle();
 
-        while (matrixEle != null ){
+        while (matrixEle != null) {
             String p = String.format("%s - %d", matrixEle, matrix.valueAtElement(matrixEle));
             System.out.println(p);
-            if (matrix.right(matrixEle) == null && matrix.down(matrixEle) == null){
+            if (matrix.right(matrixEle) == null && matrix.down(matrixEle) == null) {
                 matrixEle = null;
                 break;
-            }
-            else if (matrix.right(matrixEle) != null && matrix.down(matrixEle) != null){
-                if (matrix.valueAtElement(matrix.right(matrixEle)) < matrix.valueAtElement(matrix.down(matrixEle))){
+            } else if (matrix.right(matrixEle) != null && matrix.down(matrixEle) != null) {
+                if (matrix.valueAtElement(matrix.right(matrixEle)) < matrix.valueAtElement(matrix.down(matrixEle))) {
                     matrixEle.addX();
-                }else{
+                } else {
                     matrixEle.addY();
                 }
-            }else if(matrix.down(matrixEle) != null){
+            } else if (matrix.down(matrixEle) != null) {
                 matrixEle.addY();
-            }else{
+            } else {
                 matrixEle.addX();
             }
         }

@@ -3,14 +3,15 @@ package linkedlist;
 public class LinkedList {
 
     Node head = null;
-    Node tail= null;
-    Integer size= 0;
+    Node tail = null;
+    Integer size = 0;
 
     public LinkedList(Integer n) {
         head = new Node(n);
         tail = head;
         size = 1;
     }
+
     public LinkedList() {
 
     }
@@ -40,11 +41,10 @@ public class LinkedList {
     }
 
     public void add(Node newNode) {
-        if (this.getHead() != null){
+        if (this.getHead() != null) {
             tail.next = newNode;
             tail = newNode;
-        }
-        else{
+        } else {
             head = newNode;
             tail = head;
             size = 1;
@@ -63,9 +63,7 @@ public class LinkedList {
         if (this.getSize() == 1 && i == 0) {
             this.head.setNext(null);
             return;
-        }
-
-        else if (i == 0) {
+        } else if (i == 0) {
             this.setHead(this.getHead().getNext());
             return;
         }
@@ -102,21 +100,21 @@ public class LinkedList {
             currentNode = currentNode.getNext();
         }
     }
-    
+
     public void printLinkedList() {
         printLinkedList(this);
     }
 
     @Override
     public String toString() {
-        String str ="";
+        String str = "";
         Node currentNode = this.getHead();
         while (currentNode != null) {
-            str = str +currentNode +", ";
+            str = str + currentNode + ", ";
             currentNode = currentNode.getNext();
         }
-        str = str.substring(0, str.length()-2);
-        str = String.format("LinkedList [%s]",str);
+        str = str.substring(0, str.length() - 2);
+        str = String.format("LinkedList [%s]", str);
         return str;
     }
 }

@@ -1,4 +1,5 @@
 package exercise;
+
 import java.util.Arrays;
 
 // Write a Java program to get the preorder traversal of its nodes' values of a given a binary tree
@@ -40,13 +41,13 @@ public class Ex132 {
 
         return count;
     }
-    
+
     public static Integer getSqueezedArrLength2(Integer[] arr, Integer c) {
         return 2;
     }
 
     public static void main(String[] args) {
-        Integer[] arr = { 1, 2, 3, 3, 3, 4, 4, 5, 6 };
+        Integer[] arr = {1, 2, 3, 3, 3, 4, 4, 5, 6};
         System.out.println(
                 String.format("Array: %s have %d unique numbers", Arrays.toString(arr), getSqueezedArrLength(arr, 2)));
     }

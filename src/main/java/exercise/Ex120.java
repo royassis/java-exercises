@@ -16,12 +16,12 @@ public class Ex120 {
         printMatrix(matrix);
 
         Integer[] result = getEleIndexInMatrixBinarySearch(matrix, ele);
-        if (result != null){
-            System.out.println( String.format("Element %d was found at position %d,%d", ele,result[0]+1, result[1]+1));
-        }else {
-            System.out.println(String.format("Element %d was not found in matrix",ele));
+        if (result != null) {
+            System.out.println(String.format("Element %d was found at position %d,%d", ele, result[0] + 1, result[1] + 1));
+        } else {
+            System.out.println(String.format("Element %d was not found in matrix", ele));
         }
-        
+
 
     }
 
@@ -55,7 +55,7 @@ public class Ex120 {
             int matrixEle = matrix[mid % r][mid / c];
 
             if (ele == matrixEle) {
-                return new Integer[] { mid % r, mid / c };
+                return new Integer[]{mid % r, mid / c};
             } else if (matrixEle < ele) {
                 start = mid + 1;
             } else {

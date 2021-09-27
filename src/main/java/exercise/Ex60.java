@@ -1,4 +1,5 @@
 package exercise;
+
 /**
  * Some description of class.
  *

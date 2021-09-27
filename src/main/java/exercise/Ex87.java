@@ -1,4 +1,5 @@
 package exercise;
+
 import java.util.Scanner;
 import java.util.*;
 
@@ -24,7 +25,7 @@ public class Ex87 {
 
         try (Scanner scanner = new Scanner(System.in)) {
             n = scanner.nextInt();
-        };
+        }
 
         while (n > 0) {
             sum = sum + n % 10;
@@ -39,16 +40,16 @@ public class Ex87 {
         }
     }
 
-    static Integer getNthDigit(Integer n, Integer digit){
+    static Integer getNthDigit(Integer n, Integer digit) {
         return (int) ((n / Math.pow(10, digit - 1)) % 10);
     }
 
-    static Integer getFirstDigit(Integer n, Integer length){
+    static Integer getFirstDigit(Integer n, Integer length) {
         return getNthDigit(n, length);
     }
 
-    static Integer getFirstDigit(Integer n){
-        Integer length =0;
+    static Integer getFirstDigit(Integer n) {
+        Integer length = 0;
         while (n > 0) {
             length++;
             n = n / 10;
@@ -57,7 +58,7 @@ public class Ex87 {
         return (int) ((n / Math.pow(10, length - 1)) % 10);
     }
 
-    static Integer getNumberLength(Integer n){
+    static Integer getNumberLength(Integer n) {
         Integer length = 0;
         while (n > 0) {
             length++;
