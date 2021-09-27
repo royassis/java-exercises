@@ -94,7 +94,7 @@ public class LinkedList {
         }
     }
 
-    static void printLinkedList(LinkedList ll) {
+    public static void printLinkedList(LinkedList ll) {
         Node currentNode = ll.getHead();
 
         while (currentNode != null) {
@@ -102,8 +102,21 @@ public class LinkedList {
             currentNode = currentNode.getNext();
         }
     }
-
-    void printLinkedList() {
+    
+    public void printLinkedList() {
         printLinkedList(this);
+    }
+
+    @Override
+    public String toString() {
+        String str ="";
+        Node currentNode = this.getHead();
+        while (currentNode != null) {
+            str = str +currentNode +", ";
+            currentNode = currentNode.getNext();
+        }
+        str = str.substring(0, str.length()-2);
+        str = String.format("LinkedList [%s]",str);
+        return str;
     }
 }

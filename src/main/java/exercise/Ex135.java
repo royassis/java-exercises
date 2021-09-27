@@ -16,9 +16,8 @@ public class Ex135 {
 
         removeDuplicatesFromSortedLinkedList(ll);
 
-        printLinkedList(ll);
-        
-        
+        System.out.println(ll);
+ 
     }
     static void removeDuplicatesFromSortedLinkedList(LinkedList ll){
         Node currentNode = ll.getHead();
@@ -29,14 +28,6 @@ public class Ex135 {
                 firstNodeInStrip.setNext(currentNode);
                 firstNodeInStrip = currentNode;
             }
-            currentNode = currentNode.getNext();
-        }
-    }
-    static void printLinkedList(LinkedList ll){
-        Node currentNode = ll.getHead();
- 
-        while (currentNode != null){
-            System.out.println(currentNode);
             currentNode = currentNode.getNext();
         }
     }
