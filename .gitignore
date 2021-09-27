@@ -2,3 +2,5 @@
 **/*.class
 /.idea/
 /java-exercises.iml
+/.classpath
+/.project
