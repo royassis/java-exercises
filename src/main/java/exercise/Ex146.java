@@ -2,7 +2,7 @@ package exercise;
 
 import java.util.*;
 
-import ads.BinaryTree.*;
+import ads.binarytree.*;
 
 //Write a Java program to convert an sorted array to binary search tree
 

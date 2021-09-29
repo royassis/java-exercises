@@ -1,4 +1,4 @@
-package ads.BinaryTree;
+package ads.binarytree;
 
 
 public class BinaryTree {
@@ -6,6 +6,10 @@ public class BinaryTree {
 
     public BinaryTree(Integer val) {
         root = new Node(val);
+    }
+
+    public Node getRoot(){
+        return this.root;
     }
 
     public BinaryTree() {
@@ -25,6 +29,13 @@ public class BinaryTree {
     public void add(Integer val) {
         add( new Node(val));
     }
+
+    public void add(Integer...arr) {
+        for (Integer n : arr){
+            add( new Node(n));
+        }
+    }
+
 
     // public void addBase(Node currentNode, Node newNode) {
     //     if (currentNode.left == null) {
