@@ -13,6 +13,8 @@ public class Ex150 {
         treeA.add(2, 1, 3);
         treeB.add(3);
 
+        treeA.printPreOrderTraversal();
+
         System.out.println(foo(treeA, treeB));
     }
 
@@ -21,7 +23,7 @@ public class Ex150 {
     }
 
     static Boolean fooBase(Node nodeA, Node nodeB) {
-        System.out.println("nodeA: "+ nodeA + " nodeB: " + nodeB);
+        // System.out.println("nodeA: "+ nodeA + " nodeB: " + nodeB);
         if (!nodeA.any()) {
             if (nodeA.valueEquals(nodeB) && !nodeA.any() && !nodeB.any()) {
                 return true;

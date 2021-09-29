@@ -68,23 +68,45 @@ public class BinaryTree {
 
     }
 
-    public void printPreorderTraversal() {
-        printPreorderTraversalBase(this.root);
+    public void printPreOrderTraversal() {
+        printPreOrderTraversalBase(this.root);
         System.out.println();
     }
 
-    public void printPreorderTraversalBase(Node currentNode) {
+    public void printPostOrderTraversal() {
+        printPostOrderTraversalBase(this.root);
+        System.out.println();
+    }
+
+    public void printPreOrderTraversalBase(Node currentNode) {
+        if (currentNode == null) {
+            return;
+        }
+        System.out.print(currentNode.val + " ");
+
+        if (currentNode.left != null) {
+            printPreOrderTraversalBase(currentNode.left);
+        }
+        if (currentNode.right != null) {
+            printPreOrderTraversalBase(currentNode.right);
+        }
+        
+    }
+
+    public void printPostOrderTraversalBase(Node currentNode) {
         if (currentNode == null) {
             return;
         }
 
         if (currentNode.left != null) {
-            printPreorderTraversalBase(currentNode.left);
+            printPreOrderTraversalBase(currentNode.left);
         }
         if (currentNode.right != null) {
-            printPreorderTraversalBase(currentNode.right);
+            printPreOrderTraversalBase(currentNode.right);
         }
+
         System.out.print(currentNode.val + " ");
+        
     }
 
 }
