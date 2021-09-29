@@ -2,7 +2,7 @@ package exercise;
 
 import ads.binarytree.*;
 
-// Write a Java program to check if a given string is a permutation of another given string.
+// Write a Java program to test if a binary tree is a subtree of another binary tree.
 
 public class Ex150 {
 
