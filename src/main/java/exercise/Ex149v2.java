@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 // Write a Java program to check if a given string is a permutation of another given string.
 
-public class Ex149 {
+public class Ex149v2 {
 
     public static void main(String[] args) {
         String strA = "za";
-        String strB = "az";
+        String strB = "aza";
 
         System.out.println(checkPermutation(strA, strB));
 
@@ -17,28 +17,23 @@ public class Ex149 {
     static Boolean checkPermutation(String strA, String strB) {
         Character a = 'a';
         Character z = 'z';
-        int delta = z - a;
 
-        int[] arr = new int[(z - a + 1) * 2];
-        fillArr(strA, arr, 0);
-        fillArr(strB, arr, delta+1);
+        int[] arr = new int[z - a + 1];
+        for (Character c : strA.toCharArray()) {
+            arr[c - a]++;
+        }
+        for (Character c : strB.toCharArray()) {
+            arr[c - a]--;
+        }
 
         System.out.println(Arrays.toString(arr));
 
-        for (int i = 0; i < delta; i++) {
-            int j = i + delta + 1;
-            if (arr[i] != arr[j]) {
+        for (int n : arr) {
+            if(n!=0){
                 return false;
             }
         }
         return true;
     }
 
-    static void fillArr(String str, int[] arr, Integer delta) {
-        Character a = 'a';
-        for (Character c : str.toCharArray()) {
-            int i = c - a + delta;
-            arr[i]++;
-        }
-    }
 }
