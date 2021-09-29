@@ -1,7 +1,7 @@
 package exercise;
 
 import java.util.*;
-//Write a Java program to check if a given string has all unique characters
+// Write a Java program to check if two given strings are anagrams or not.
 import java.util.Map.Entry;
 
 public class Ex142 {
