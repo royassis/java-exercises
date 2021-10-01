@@ -1,8 +1,5 @@
 package exercise;
 
-import java.util.*;
-
-//  Write a Java program to find the kth smallest and largest element in a given array;
 
 public class Ex163 {
     public static void main(String[] args) {
