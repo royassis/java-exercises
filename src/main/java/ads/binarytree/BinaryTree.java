@@ -150,5 +150,30 @@ public class BinaryTree {
 
         return a && b && nodeA.valueEquals(nodeB);
     }
+    public int maxDepth(){
+        return maxDepth(this);
+    }
+
+    public static int maxDepth(BinaryTree tree){
+        return maxDepthBase(tree.getRoot(), 1);
+    }
+
+    static int maxDepthBase(Node node, int depth){
+        if (!node.any()){
+            return depth;
+        }
+        int a = 0;
+        int b = 0;
+
+        if (node.isLeft()) {
+            a = maxDepthBase(node.getLeft(), depth+1);
+        }
+
+        if (node.isRight()) {
+            b = maxDepthBase(node.getRight(), depth+1);
+        }
+
+        return a > b ? a : b;
+    }
 
 }
