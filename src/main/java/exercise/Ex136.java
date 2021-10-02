@@ -2,7 +2,7 @@ package exercise;
 
 import java.util.*;
 
-import matrixpackge.*;
+import ads.matrixpackge.*;
 
 class Ex136 {
     public static void main(String[] args) {

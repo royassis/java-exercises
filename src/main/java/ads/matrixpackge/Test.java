@@ -1,5 +1,4 @@
-package matrixpackge;
-
+package ads.matrixpackge;
 import java.util.HashMap;
 
 class Test {

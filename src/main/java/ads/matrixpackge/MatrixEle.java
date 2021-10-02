@@ -1,4 +1,4 @@
-package matrixpackge;
+package ads.matrixpackge;
 
 public class MatrixEle {
 

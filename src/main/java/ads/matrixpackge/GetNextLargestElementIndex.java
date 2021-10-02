@@ -1,4 +1,4 @@
-package matrixpackge;
+package ads.matrixpackge;
 
 import java.util.concurrent.TimeUnit;
 import java.util.HashSet;

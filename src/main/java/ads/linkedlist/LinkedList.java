@@ -1,4 +1,4 @@
-package linkedlist;
+package ads.linkedlist;
 
 public class LinkedList {
 

@@ -1,6 +1,6 @@
 package exercise;
 
-import matrixpackge.*;
+import ads.matrixpackge.*;
 
 // Ex133 Write a Java program to find a path from top left to bottom in right direction which minimizes the sum of all numbers along its path.
 class Ex133 {
