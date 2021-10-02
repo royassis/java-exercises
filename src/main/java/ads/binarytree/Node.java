@@ -16,6 +16,14 @@ public class Node {
         return "Node [left=" + outLeft + ", right=" + outRight + ", val=" + val + "]";
     }
 
+    public void setRight(int val) {
+        setRight(new Node(val));
+    }
+
+    public void setLeft(int val) {
+        setLeft(new Node(val));
+    }
+
     public void setLeft(Node left) {
         this.left = left;
     }

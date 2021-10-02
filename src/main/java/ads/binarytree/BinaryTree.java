@@ -20,7 +20,6 @@ public class BinaryTree {
         if (this.root == null){
             this.root = newNode;
         }else{
-            
             this.addBase(this.root, newNode);
         }
 
