@@ -16,6 +16,22 @@ public class LinkedList {
 
     }
 
+    public  static void switchNextAdjacentNodes(Node node0){
+        if (!node0.hasNext() || !node0.getNext().hasNext()){
+            return;
+        }
+
+        // switches node 1 and 2
+        Node node1 = node0.getNext();
+        Node node2 = node0.getNext().getNext();
+        Node node3 = node0.getNext().getNext().getNext();
+
+        node0.setNext(node2);
+        node2.setNext(node1);
+        node1.setNext(node3);
+        
+    }
+
     public Integer getSize() {
         return size;
     }
