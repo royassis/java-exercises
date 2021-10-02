@@ -4,6 +4,10 @@ package ads.binarytree;
 public class BinaryTree {
     Node root = null;
 
+    public BinaryTree(Integer... val) {
+        add(val);
+    }
+
     public BinaryTree(Integer val) {
         root = new Node(val);
     }
@@ -94,7 +98,7 @@ public class BinaryTree {
         System.out.print(currentNode.val + " ");
         
     }
-    
+
     public void copyTree(BinaryTree other) {
         copyTree(this, other);
     }
