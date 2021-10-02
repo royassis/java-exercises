@@ -7,15 +7,15 @@ public class Utils {
         return (int) ((Math.random() * (max + 1 - min)) + min);
     }
 
-    static Integer getNthDigit(Integer n, Integer digit) {
+    public static Integer getNthDigit(Integer n, Integer digit) {
         return (int) ((n / Math.pow(10, digit - 1)) % 10);
     }
 
-    static Integer getFirstDigit(Integer n, Integer length) {
+    public static Integer getFirstDigit(Integer n, Integer length) {
         return getNthDigit(n, length);
     }
 
-    static Integer getFirstDigit(Integer n) {
+    public static Integer getFirstDigit(Integer n) {
         Integer length = 0;
         while (n > 0) {
             length++;
@@ -25,7 +25,7 @@ public class Utils {
         return (int) ((n / Math.pow(10, length - 1)) % 10);
     }
 
-    static Integer getNumberLength(Integer n) {
+    public static Integer getNumberLength(Integer n) {
         Integer length = 0;
         while (n > 0) {
             length++;
