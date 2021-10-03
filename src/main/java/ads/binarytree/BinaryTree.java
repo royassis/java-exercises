@@ -68,6 +68,32 @@ public class BinaryTree {
         System.out.println();
     }
 
+    public void printLevelOrder() {
+        int h = maxDepth();
+        for (int i = 1; i < h+1; i++) {
+            printCurrentLevel(getRoot(), i, h);
+            System.out.println();
+        }
+    }
+
+    public void printCurrentLevel(Node currentNode, int level, int maxDepth) {
+
+        if (currentNode == null){
+            return;
+        }
+            
+        if (level == 1){
+            System.out.print(currentNode.getVal() + " ");
+        }
+
+        if (level > 1){
+            printCurrentLevel(currentNode.left , level-1, maxDepth);
+            // printCurrentLevel(null , level-1, maxDepth);
+            printCurrentLevel(currentNode.right , level-1, maxDepth);
+        }
+
+    }
+
     public void printPreOrderTraversalBase(Node currentNode) {
         if (currentNode == null) {
             return;
@@ -98,6 +124,7 @@ public class BinaryTree {
         System.out.print(currentNode.val + " ");
         
     }
+
 
     public void copyTree(BinaryTree other) {
         copyTree(this, other);
