@@ -53,4 +53,11 @@ public class Utils {
     public static Integer[] getSubArr(Integer[] arr, Integer start, Integer end) {
         return Arrays.copyOfRange(arr, start, end);
     }
+
+    public static String zfill(String s, int len, String filler) {
+        int diff = len - s.length();
+        diff = diff<0 ? 0 : diff;
+        return filler.repeat(diff) + s;
+    }
+
 }

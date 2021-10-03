@@ -1,6 +1,5 @@
 package ads.binarytree;
 
-
 public class BinaryTree {
     Node root = null;
 
@@ -68,6 +67,38 @@ public class BinaryTree {
         System.out.println();
     }
 
+    public Integer getMaxDigitsInTreeLevels(){
+        int h = maxDepth();
+        int max = 0;
+        for (int i = 1; i < h+1; i++) {
+           int result = getSumExtraDigitsInTreeLevels(getRoot(), i, 0);
+           if (result > max){
+                max = result;
+           }
+        }
+        return max;
+    }
+
+    public Integer getSumExtraDigitsInTreeLevels(Node currentNode, Integer level, Integer sum){
+        if (currentNode == null){
+            return 0;
+        }
+
+        // print number 
+        if (level == 1){
+            return currentNode.getVal();
+        } 
+        
+        int a =0;
+        int b =0;
+        if (level > 1){
+            a = sum + getSumExtraDigitsInTreeLevels(currentNode == null ? null : currentNode.left , level-1, 0);
+            b = sum + getSumExtraDigitsInTreeLevels(currentNode == null ? null : currentNode.right , level-1,  0);
+        }
+
+        return a + b;
+    }
+
     public void printLevelOrder(String sep) {
 
         int h = maxDepth();
@@ -92,7 +123,7 @@ public class BinaryTree {
             System.out.print(valOrSpace);
             System.out.print(sep.repeat(nTimes));
             return;
-        }
+        } 
         
         if (level > 1){
             int newDepth = (maxDepth-1)/3;
