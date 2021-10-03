@@ -68,28 +68,37 @@ public class BinaryTree {
         System.out.println();
     }
 
-    public void printLevelOrder() {
+    public void printLevelOrder(String sep) {
+
         int h = maxDepth();
+
+        int end = (int)(((Math.pow(3, ((float)h-1.0)))-1)/2);
+
         for (int i = 1; i < h+1; i++) {
-            printCurrentLevel(getRoot(), i, h);
+            printCurrentLevel(getRoot(), i, end, sep);
             System.out.println();
         }
     }
 
-    public void printCurrentLevel(Node currentNode, int level, int maxDepth) {
+    public void printCurrentLevel(Node currentNode, int level, int maxDepth, String sep) {
 
-        if (currentNode == null){
+        int nTimes = maxDepth;
+        String valOrSpace = currentNode == null ? sep : Integer.toString(currentNode.getVal()) ;
+        
+        
+        // print number 
+        if (level == 1){
+            System.out.print(sep.repeat(nTimes));
+            System.out.print(valOrSpace);
+            System.out.print(sep.repeat(nTimes));
             return;
         }
-            
-        if (level == 1){
-            System.out.print(currentNode.getVal() + " ");
-        }
-
+        
         if (level > 1){
-            printCurrentLevel(currentNode.left , level-1, maxDepth);
-            // printCurrentLevel(null , level-1, maxDepth);
-            printCurrentLevel(currentNode.right , level-1, maxDepth);
+            int newDepth = (maxDepth-1)/3;
+            printCurrentLevel(currentNode == null ? null : currentNode.left , level-1, newDepth, sep);
+            printCurrentLevel(null , level-1, newDepth, sep);
+            printCurrentLevel(currentNode == null ? null : currentNode.right , level-1, newDepth, sep);
         }
 
     }
