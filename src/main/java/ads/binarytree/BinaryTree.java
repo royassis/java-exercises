@@ -1,5 +1,7 @@
 package ads.binarytree;
 
+import static utils.Utils.getNumberLength;
+
 public class BinaryTree {
     Node root = null;
 
@@ -86,7 +88,8 @@ public class BinaryTree {
 
         // print number 
         if (level == 1){
-            return currentNode.getVal();
+            int nDigits = getNumberLength(currentNode.getVal());
+            return nDigits > 1 ? nDigits-1 : 0;
         } 
         
         int a =0;
@@ -103,7 +106,10 @@ public class BinaryTree {
 
         int h = maxDepth();
 
-        int end = (int)(((Math.pow(3, ((float)h-1.0)))-1)/2);
+        // extraDigitsFactors
+        int edf = getMaxDigitsInTreeLevels();
+
+        int end = (int)(((Math.pow(3, ((float)h-1.0)))+edf-1)/2);
 
         for (int i = 1; i < h+1; i++) {
             printCurrentLevel(getRoot(), i, end, sep);
