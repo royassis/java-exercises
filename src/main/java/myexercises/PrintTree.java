@@ -60,10 +60,10 @@ class NodeLocation{
 public class PrintTree {
     public static void main(String[] args) {
 
-        // BinaryTree tree = new BinaryTree(new Integer[]{14,7,3,10,2,12, 30, 18,17, 29,32,31, 35});
+        BinaryTree tree = new BinaryTree(new Integer[]{14,7,3,10,2,12, 30, 18,17, 29,32,31, 35});
         // BinaryTree tree = new BinaryTree(new Integer[]{14,7,10,30, 18});
         // BinaryTree tree = new BinaryTree(new Integer[]{5,3,7,4,6});
-        BinaryTree tree = new BinaryTree(new Integer[]{5,3,7});
+        // BinaryTree tree = new BinaryTree(new Integer[]{5,3,7, 9});
     
         int h = tree.maxDepth();
 
@@ -73,8 +73,10 @@ public class PrintTree {
             arr.add(new ArrayList<NodeLocation>());
         }
         
-        cumSumTree(arr, tree.getRoot(), 0, 1, 0);
-        System.exit(1);
+        cumSumTree(arr, tree.getRoot(), 0, 0, 0);
+        System.out.println();
+        // System.exit(0);
+
         // level 
         for (int level = 0; level< arr.size() ;level ++) {
 
@@ -83,6 +85,10 @@ public class PrintTree {
             int tileIdx = 0;
             int eleIdx = 0 ;
             String sep = " ";
+            Integer nRepets = 2;
+            Integer lineSpaces = 2;
+            sep = sep.repeat(nRepets);
+            String pad = " ";
 
             while ( tileIdx <= maxTileIdx && eleIdx < arr.get(level).size()) {
                 NodeLocation ele = arr.get(level).get(eleIdx);
@@ -94,7 +100,7 @@ public class PrintTree {
                 }
                 tileIdx++;
             }
-            System.out.println();
+            System.out.print("\n".repeat(lineSpaces));
         }
 
     }
@@ -102,22 +108,15 @@ public class PrintTree {
     public static Integer cumSumTree(ArrayList<ArrayList<NodeLocation>> arr, Node currentNode, int level, int cumAdd, Integer leftOrRIght) {
 
             if (currentNode == null){
-                return 1;
+                return cumAdd;
             }
 
-            // left branch node count
-            Integer a = 1 + cumSumTree(arr, currentNode.getLeft(), level+1,  1, 0);
+            Integer a = cumSumTree(arr, currentNode.getLeft(), level+1,  cumAdd , 0);
 
-            arr.get(level).add(new NodeLocation(currentNode.getVal(), leftOrRIght, cumAdd, level));
-            
-            System.out.println("a:"+a+" cumAdd:"+cumAdd+" level:"+level);
+            arr.get(level).add(new NodeLocation(currentNode.getVal(), leftOrRIght, a, level));
 
-            // left branch node count + // right branch node count
-            Integer b = 1 +cumSumTree(arr, currentNode.getRight(), level+1, 1, 1);
-            
-        
-            return a + b  + 1 ;
-        
+            System.out.println("x:"+a+" cumAdd:"+cumAdd+" level:"+level +" val:" + currentNode.getVal());
+
+            return cumSumTree(arr, currentNode.getRight(), level+1, a + 1, 1);
     }
-
 }
