@@ -73,50 +73,42 @@ public class PrintTree {
             arr.add(new ArrayList<NodeLocation>());
         }
         
-        cumSumTree(arr, tree.getRoot(), 0, 0, 0);
+        getNodeLocations(arr, tree.getRoot(), 0, 0, 0);
         System.out.println();
-        // System.exit(0);
 
-        // level 
+        String sep = " ";
+        Integer nRepeats = 2;
+        Integer lineSpaces = 2;
+        printTreeRepresentation(arr, sep, nRepeats, lineSpaces);
+    }
+
+    public static void printTreeRepresentation(ArrayList<ArrayList<NodeLocation>> arr, String sep, Integer nRepeats, Integer lineSpaces){
+
+        sep = sep.repeat(nRepeats);
         for (int level = 0; level< arr.size() ;level ++) {
-
-            ArrayList<NodeLocation> currentLevel = arr.get(level);
-            Integer maxTileIdx = currentLevel.get(currentLevel.size()-1).getXIdx();
-            int tileIdx = 0;
-            int eleIdx = 0 ;
-            String sep = " ";
-            Integer nRepets = 2;
-            Integer lineSpaces = 2;
-            sep = sep.repeat(nRepets);
-            String pad = " ";
-
-            while ( tileIdx <= maxTileIdx && eleIdx < arr.get(level).size()) {
-                NodeLocation ele = arr.get(level).get(eleIdx);
-                if (ele.getXIdx() == tileIdx){
-                    System.out.print(ele);
-                    eleIdx++;
-                }else{
-                    System.out.print(sep);
-                }
-                tileIdx++;
+            int lastIdx = 0;
+            for (NodeLocation nl : arr.get(level)) {
+                int delta = nl.getXIdx() - lastIdx;
+                lastIdx = nl.getXIdx() + 1;
+                System.out.print(sep.repeat(delta)+nl.getVal());
             }
             System.out.print("\n".repeat(lineSpaces));
         }
-
     }
 
-    public static Integer cumSumTree(ArrayList<ArrayList<NodeLocation>> arr, Node currentNode, int level, int cumAdd, Integer leftOrRIght) {
+    public static Integer getNodeLocations(ArrayList<ArrayList<NodeLocation>> arr, Node currentNode, int level, int cumAdd, Integer leftOrRIght) {
 
             if (currentNode == null){
                 return cumAdd;
             }
 
-            Integer a = cumSumTree(arr, currentNode.getLeft(), level+1,  cumAdd , 0);
+            Integer a = getNodeLocations(arr, currentNode.getLeft(), level+1,  cumAdd , 0);
 
             arr.get(level).add(new NodeLocation(currentNode.getVal(), leftOrRIght, a, level));
 
             System.out.println("x:"+a+" cumAdd:"+cumAdd+" level:"+level +" val:" + currentNode.getVal());
 
-            return cumSumTree(arr, currentNode.getRight(), level+1, a + 1, 1);
+            return getNodeLocations(arr, currentNode.getRight(), level+1, a + 1, 1);
     }
 }
+
