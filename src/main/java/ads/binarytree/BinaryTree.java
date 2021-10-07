@@ -1,6 +1,7 @@
 package ads.binarytree;
 
 import static utils.Utils.getNumberLength;
+import java.util.*;
 
 public class BinaryTree {
     Node root = null;
@@ -247,6 +248,70 @@ public class BinaryTree {
         }
 
         return a > b ? a : b;
+    }
+
+    public void rotateClockwise(BinaryTree tree){
+        rotateClockwiseBase(this.getRoot(), null, -1);
+    }
+
+    public void rotateClockwiseBase(Node currentNode, Node parentNode, int direction){
+
+
+        if (currentNode.right != null){
+            rotateClockwiseBase(currentNode.right, currentNode, 0);
+
+            if (currentNode.right.right == null && currentNode.right.left == null){
+                if (direction == 0){
+                    parentNode.right = currentNode.right;
+                }
+                if (direction == 1){
+                    parentNode.left = currentNode.right;
+                }
+            }
+        }
+
+        if (currentNode.left != null) {
+            rotateClockwiseBase(currentNode.left, currentNode, 1);
+
+            if (currentNode.left.right == null && currentNode.left.left == null){
+                if (direction == 0){
+                    parentNode.right = currentNode.left;
+                }
+                if (direction == 1){
+                    parentNode.left = currentNode.left;
+                }
+            }
+        }
+      
+    }
+
+    public static void printTreeRepresentation(ArrayList<ArrayList<NodeLocation>> arr, String sep, Integer nRepeats, Integer lineSpaces){
+
+        sep = sep.repeat(nRepeats);
+        for (int level = 0; level< arr.size() ;level ++) {
+            int lastIdx = 0;
+            for (NodeLocation nl : arr.get(level)) {
+                int delta = nl.getXIdx() - lastIdx;
+                lastIdx = nl.getXIdx() + 1;
+                System.out.print(sep.repeat(delta)+nl.getVal());
+            }
+            System.out.print("\n".repeat(lineSpaces));
+        }
+    }
+
+    public static Integer getNodeLocations(ArrayList<ArrayList<NodeLocation>> arr, Node currentNode, int level, int cumAdd, Integer leftOrRIght) {
+
+            if (currentNode == null){
+                return cumAdd;
+            }
+
+            Integer a = getNodeLocations(arr, currentNode.getLeft(), level+1,  cumAdd , 0);
+
+            arr.get(level).add(new NodeLocation(currentNode.getVal(), leftOrRIght, a, level));
+
+            System.out.println("x:"+a+" cumAdd:"+cumAdd+" level:"+level +" val:" + currentNode.getVal());
+
+            return getNodeLocations(arr, currentNode.getRight(), level+1, a + 1, 1);
     }
 
 }
