@@ -251,51 +251,63 @@ public class BinaryTree {
     }
 
     public void rotateClockwise(BinaryTree tree) {
-        tree.root =  rotateClockwiseBase(this.getRoot(), null, -1);
+        tree.root = rotateClockwiseBase(this.getRoot(), null, -1);
         System.out.println(tree.root);
     }
 
     public Node rotateClockwiseBase(Node currentNode, Node parentNode, int direction) {
 
-        if (currentNode.right != null) {
-            Node childNode = currentNode.right;
-
-            if (childNode.any()){
-                rotateClockwiseBase(currentNode.right, currentNode, 0);
-            }
-
-            if (direction == 0) {
-                parentNode.right = childNode;
-            }
-            if (direction == 1) {
-                parentNode.left = childNode;
-            }
-            childNode.right = currentNode;
-            childNode.left = currentNode.left;
-            currentNode.right = null;
-            currentNode.left = null;
+        if (currentNode == null) {
+            return parentNode;
+        } else if (!currentNode.any()) {
+            return currentNode;
         }
 
-        if (currentNode.left != null) {
-            Node childNode = currentNode.left;
+        Node childNode = null;
+        Node tmp = null;
 
-            if (childNode.any()){
-                rotateClockwiseBase(currentNode.left, currentNode, 1);
-            }
-            
-            if (direction == 0) {
-                parentNode.right = childNode;
-            }
-            if (direction == 1) {
-                parentNode.left = childNode;
-            }
-            childNode.left = currentNode;
-            childNode.right = currentNode.right;
-            currentNode.right = null;
-            currentNode.left = null;
-            }
+        if (currentNode.isRight()){
+            rotateClockwiseBase(currentNode.getRight(), currentNode, 0);
+            childNode = currentNode.getRight();
+            tmp = currentNode;
+            switchNodes(currentNode, childNode, 0);
+            currentNode = childNode;
+            childNode = tmp;
+        }
 
-            return currentNode;
+        if (currentNode.isLeft()){
+            rotateClockwiseBase(currentNode.getLeft(), currentNode, 1);
+            childNode = currentNode.getLeft();
+            tmp = currentNode;
+            switchNodes(currentNode, currentNode.getLeft(), 1);
+            currentNode = childNode;
+            childNode = tmp;
+        }
+
+        if (direction == 0) {
+            parentNode.right = currentNode;
+        }
+        else if (direction == 1) {
+            parentNode.left = currentNode;
+        }
+
+        return currentNode;
+    }
+
+    public static void switchNodes(Node parent, Node child, int direction) {
+        Node childLeft = child.getLeft();
+        Node childRight = child.getRight();
+
+        if (direction == 0) {
+            child.setRight(parent);
+            child.setLeft(parent.getLeft());
+        }
+        if (direction == 1) {
+            child.setLeft(parent);
+            child.setRight(parent.getRight());
+        }
+        parent.setLeft(childLeft);
+        parent.setRight(childRight);
     }
 
     public static void printTreeRepresentation(ArrayList<ArrayList<NodeLocation>> arr, String sep, Integer nRepeats,
