@@ -257,31 +257,18 @@ public class BinaryTree {
 
     public Node rotateClockwiseBase(Node currentNode, Node parentNode, int direction) {
 
-        if (currentNode == null) {
-            return parentNode;
-        } else if (!currentNode.any()) {
-            return currentNode;
-        }
-
-        Node childNode = null;
-        Node tmp = null;
+        if (currentNode == null || !currentNode.any()) {
+            return null;
+        } 
 
         if (currentNode.isRight()){
             rotateClockwiseBase(currentNode.getRight(), currentNode, 0);
-            childNode = currentNode.getRight();
-            tmp = currentNode;
-            switchNodes(currentNode, childNode, 0);
-            currentNode = childNode;
-            childNode = tmp;
+            currentNode = switchNodes(currentNode, currentNode.getRight(), 0);
         }
 
         if (currentNode.isLeft()){
             rotateClockwiseBase(currentNode.getLeft(), currentNode, 1);
-            childNode = currentNode.getLeft();
-            tmp = currentNode;
-            switchNodes(currentNode, currentNode.getLeft(), 1);
-            currentNode = childNode;
-            childNode = tmp;
+            currentNode = switchNodes(currentNode, currentNode.getLeft(), 1);
         }
 
         if (direction == 0) {
@@ -294,7 +281,7 @@ public class BinaryTree {
         return currentNode;
     }
 
-    public static void switchNodes(Node parent, Node child, int direction) {
+    public static Node switchNodes(Node parent, Node child, int direction) {
         Node childLeft = child.getLeft();
         Node childRight = child.getRight();
 
@@ -308,6 +295,8 @@ public class BinaryTree {
         }
         parent.setLeft(childLeft);
         parent.setRight(childRight);
+
+        return child;
     }
 
     public static void printTreeRepresentation(ArrayList<ArrayList<NodeLocation>> arr, String sep, Integer nRepeats,
