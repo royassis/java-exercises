@@ -250,9 +250,8 @@ public class BinaryTree {
         return a > b ? a : b;
     }
 
-    public void rotateClockwise(BinaryTree tree) {
-        tree.root = rotateClockwiseBase(this.getRoot(), null, -1);
-        System.out.println(tree.root);
+    public void rotateClockwise() {
+        root = rotateClockwiseBase(this.getRoot(), null, -1);
     }
 
     public Node rotateClockwiseBase(Node currentNode, Node parentNode, int direction) {

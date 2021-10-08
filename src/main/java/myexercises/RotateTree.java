@@ -10,7 +10,7 @@ public class RotateTree {
 
         tree.printPreOrderTraversal();
 
-        tree.rotateClockwise(tree);
+        tree.rotateClockwise();
 
         tree.printPreOrderTraversal();
     }
