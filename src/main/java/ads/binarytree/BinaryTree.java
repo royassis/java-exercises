@@ -13,6 +13,7 @@ enum Direction {
 public class BinaryTree {
     Node root = null;
 
+    //constructors
     public BinaryTree(Integer... val) {
         add(val);
     }
@@ -21,14 +22,16 @@ public class BinaryTree {
         root = new Node(val);
     }
 
-    public Node getRoot() {
-        return this.root;
-    }
-
     public BinaryTree() {
 
     }
 
+    //getters - setters
+    public Node getRoot() {
+        return this.root;
+    }
+
+    //add
     public void add(Integer val) {
         add(new Node(val));
     }
@@ -67,6 +70,7 @@ public class BinaryTree {
 
     }
 
+    //prints
     public void printPreOrderTraversal() {
         printPreOrderTraversalBase(this.root);
         System.out.println();
@@ -75,39 +79,6 @@ public class BinaryTree {
     public void printPostOrderTraversal() {
         printPostOrderTraversalBase(this.root);
         System.out.println();
-    }
-
-    public Integer getMaxDigitsInTreeLevels() {
-        int h = maxDepth();
-        int max = 0;
-        for (int i = 1; i < h + 1; i++) {
-            int result = getSumExtraDigitsInTreeLevels(getRoot(), i, 0);
-            if (result > max) {
-                max = result;
-            }
-        }
-        return max;
-    }
-
-    public Integer getSumExtraDigitsInTreeLevels(Node currentNode, Integer level, Integer sum) {
-        if (currentNode == null) {
-            return 0;
-        }
-
-        // print number
-        if (level == 1) {
-            int nDigits = getNumberLength(currentNode.getVal());
-            return nDigits > 1 ? nDigits - 1 : 0;
-        }
-
-        int a = 0;
-        int b = 0;
-        if (level > 1) {
-            a = sum + getSumExtraDigitsInTreeLevels(currentNode == null ? null : currentNode.left, level - 1, 0);
-            b = sum + getSumExtraDigitsInTreeLevels(currentNode == null ? null : currentNode.right, level - 1, 0);
-        }
-
-        return a + b;
     }
 
     public void printLevelOrder(String sep) {
@@ -178,6 +149,110 @@ public class BinaryTree {
 
     }
 
+    public void printTreeRepresentation(String sep, Integer nRepeats,
+                                        Integer lineSpaces) {
+
+        int h = maxDepth();
+
+        ArrayList<ArrayList<NodeLocation>> arr = new ArrayList<ArrayList<NodeLocation>>();
+
+        for (int i = 0; i < h; i++) {
+            arr.add(new ArrayList<NodeLocation>());
+        }
+
+        BinaryTree.getNodeLocations(arr, getRoot(), 0, 0, 0);
+
+        sep = sep.repeat(nRepeats);
+        for (int level = 0; level < arr.size(); level++) {
+            int lastIdx = 0;
+            for (NodeLocation nl : arr.get(level)) {
+                int delta = nl.getXIdx() - lastIdx;
+                lastIdx = nl.getXIdx() + 1;
+                System.out.print(sep.repeat(delta) + nl.getVal());
+            }
+            System.out.print("\n".repeat(lineSpaces));
+        }
+    }
+
+
+    //other
+    public Integer getMaxDigitsInTreeLevels() {
+        int h = maxDepth();
+        int max = 0;
+        for (int i = 1; i < h + 1; i++) {
+            int result = getSumExtraDigitsInTreeLevels(getRoot(), i, 0);
+            if (result > max) {
+                max = result;
+            }
+        }
+        return max;
+    }
+
+    public Integer getSumExtraDigitsInTreeLevels(Node currentNode, Integer level, Integer sum) {
+        if (currentNode == null) {
+            return 0;
+        }
+
+        // print number
+        if (level == 1) {
+            int nDigits = getNumberLength(currentNode.getVal());
+            return nDigits > 1 ? nDigits - 1 : 0;
+        }
+
+        int a = 0;
+        int b = 0;
+        if (level > 1) {
+            a = sum + getSumExtraDigitsInTreeLevels(currentNode == null ? null : currentNode.left, level - 1, 0);
+            b = sum + getSumExtraDigitsInTreeLevels(currentNode == null ? null : currentNode.right, level - 1, 0);
+        }
+
+        return a + b;
+    }
+
+    public int maxDepth() {
+        return maxDepth(this);
+    }
+
+    public static int maxDepth(BinaryTree tree) {
+        return maxDepthBase(tree.getRoot(), 1);
+    }
+
+    static int maxDepthBase(Node node, int depth) {
+        if (!node.any()) {
+            return depth;
+        }
+        int a = 0;
+        int b = 0;
+
+        if (node.isLeft()) {
+            a = maxDepthBase(node.getLeft(), depth + 1);
+        }
+
+        if (node.isRight()) {
+            b = maxDepthBase(node.getRight(), depth + 1);
+        }
+
+        return a > b ? a : b;
+    }
+
+    public static Integer getNodeLocations(ArrayList<ArrayList<NodeLocation>> arr, Node currentNode, int level,
+                                           int cumAdd, Integer leftOrRIght) {
+
+        if (currentNode == null) {
+            return cumAdd;
+        }
+
+        Integer a = getNodeLocations(arr, currentNode.getLeft(), level + 1, cumAdd, 0);
+
+        arr.get(level).add(new NodeLocation(currentNode.getVal(), leftOrRIght, a, level));
+
+//        System.out.println("x:" + a + " cumAdd:" + cumAdd + " level:" + level + " val:" + currentNode.getVal());
+
+        return getNodeLocations(arr, currentNode.getRight(), level + 1, a + 1, 1);
+    }
+
+
+    //copy
     public void copyTree(BinaryTree other) {
         copyTree(this, other);
     }
@@ -201,6 +276,7 @@ public class BinaryTree {
 
     }
 
+    //compare
     public Boolean compareTrees(BinaryTree other) {
         return compareTreesBase(this.getRoot(), other.getRoot());
     }
@@ -231,31 +307,8 @@ public class BinaryTree {
         return a && b && nodeA.valueEquals(nodeB);
     }
 
-    public int maxDepth() {
-        return maxDepth(this);
-    }
 
-    public static int maxDepth(BinaryTree tree) {
-        return maxDepthBase(tree.getRoot(), 1);
-    }
-
-    static int maxDepthBase(Node node, int depth) {
-        if (!node.any()) {
-            return depth;
-        }
-        int a = 0;
-        int b = 0;
-
-        if (node.isLeft()) {
-            a = maxDepthBase(node.getLeft(), depth + 1);
-        }
-
-        if (node.isRight()) {
-            b = maxDepthBase(node.getRight(), depth + 1);
-        }
-
-        return a > b ? a : b;
-    }
+    //rotations
 
     public void rotateClockwise() {
         root = rotateClockwiseBase(this.getRoot(), null, Direction.OTHER);
@@ -304,46 +357,5 @@ public class BinaryTree {
         return child;
     }
 
-
-    public void printTreeRepresentation(String sep, Integer nRepeats,
-                                        Integer lineSpaces) {
-
-        int h = maxDepth();
-
-        ArrayList<ArrayList<NodeLocation>> arr = new ArrayList<ArrayList<NodeLocation>>();
-
-        for (int i = 0; i < h; i++) {
-            arr.add(new ArrayList<NodeLocation>());
-        }
-
-        BinaryTree.getNodeLocations(arr, getRoot(), 0, 0, 0);
-
-        sep = sep.repeat(nRepeats);
-        for (int level = 0; level < arr.size(); level++) {
-            int lastIdx = 0;
-            for (NodeLocation nl : arr.get(level)) {
-                int delta = nl.getXIdx() - lastIdx;
-                lastIdx = nl.getXIdx() + 1;
-                System.out.print(sep.repeat(delta) + nl.getVal());
-            }
-            System.out.print("\n".repeat(lineSpaces));
-        }
-    }
-
-    public static Integer getNodeLocations(ArrayList<ArrayList<NodeLocation>> arr, Node currentNode, int level,
-                                           int cumAdd, Integer leftOrRIght) {
-
-        if (currentNode == null) {
-            return cumAdd;
-        }
-
-        Integer a = getNodeLocations(arr, currentNode.getLeft(), level + 1, cumAdd, 0);
-
-        arr.get(level).add(new NodeLocation(currentNode.getVal(), leftOrRIght, a, level));
-
-//        System.out.println("x:" + a + " cumAdd:" + cumAdd + " level:" + level + " val:" + currentNode.getVal());
-
-        return getNodeLocations(arr, currentNode.getRight(), level + 1, a + 1, 1);
-    }
 
 }
