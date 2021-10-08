@@ -1,6 +1,7 @@
 package ads.binarytree;
 
 import static utils.Utils.getNumberLength;
+
 import java.util.*;
 
 enum Direction {
@@ -264,22 +265,21 @@ public class BinaryTree {
 
         if (currentNode == null || !currentNode.any()) {
             return null;
-        } 
+        }
 
-        if (currentNode.isRight()){
+        if (currentNode.isRight()) {
             rotateClockwiseBase(currentNode.getRight(), currentNode, Direction.RIGHT);
             currentNode = switchNodes(currentNode, currentNode.getRight(), Direction.RIGHT);
         }
 
-        if (currentNode.isLeft()){
+        if (currentNode.isLeft()) {
             rotateClockwiseBase(currentNode.getLeft(), currentNode, Direction.LEFT);
             currentNode = switchNodes(currentNode, currentNode.getLeft(), Direction.LEFT);
         }
 
         if (direction == Direction.RIGHT) {
             parentNode.right = currentNode;
-        }
-        else if (direction == Direction.LEFT) {
+        } else if (direction == Direction.LEFT) {
             parentNode.left = currentNode;
         }
 
@@ -306,7 +306,7 @@ public class BinaryTree {
 
 
     public void printTreeRepresentation(String sep, Integer nRepeats,
-            Integer lineSpaces) {
+                                        Integer lineSpaces) {
 
         int h = maxDepth();
 
@@ -331,7 +331,7 @@ public class BinaryTree {
     }
 
     public static Integer getNodeLocations(ArrayList<ArrayList<NodeLocation>> arr, Node currentNode, int level,
-            int cumAdd, Integer leftOrRIght) {
+                                           int cumAdd, Integer leftOrRIght) {
 
         if (currentNode == null) {
             return cumAdd;
