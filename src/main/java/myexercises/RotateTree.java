@@ -8,11 +8,11 @@ public class RotateTree {
 
         BinaryTree tree = new BinaryTree(new Integer[]{5,3,7, 9});
 
-        tree.printPreOrderTraversal();
+        tree.printTreeRepresentation(" ", 1, 1);
 
         tree.rotateClockwise();
 
-        tree.printPreOrderTraversal();
+        tree.printTreeRepresentation(" ", 1, 1);
     }
 
 }

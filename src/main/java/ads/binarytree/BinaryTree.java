@@ -298,8 +298,19 @@ public class BinaryTree {
         return child;
     }
 
-    public static void printTreeRepresentation(ArrayList<ArrayList<NodeLocation>> arr, String sep, Integer nRepeats,
+
+    public void printTreeRepresentation(String sep, Integer nRepeats,
             Integer lineSpaces) {
+
+        int h = maxDepth();
+
+        ArrayList<ArrayList<NodeLocation>> arr = new ArrayList<ArrayList<NodeLocation>>();
+
+        for (int i = 0; i < h; i++) {
+            arr.add(new ArrayList<NodeLocation>());
+        }
+
+        BinaryTree.getNodeLocations(arr, getRoot(), 0, 0, 0);
 
         sep = sep.repeat(nRepeats);
         for (int level = 0; level < arr.size(); level++) {
@@ -324,7 +335,7 @@ public class BinaryTree {
 
         arr.get(level).add(new NodeLocation(currentNode.getVal(), leftOrRIght, a, level));
 
-        System.out.println("x:" + a + " cumAdd:" + cumAdd + " level:" + level + " val:" + currentNode.getVal());
+//        System.out.println("x:" + a + " cumAdd:" + cumAdd + " level:" + level + " val:" + currentNode.getVal());
 
         return getNodeLocations(arr, currentNode.getRight(), level + 1, a + 1, 1);
     }

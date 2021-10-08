@@ -23,7 +23,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>matrixpackage.Test</mainClass>
+                            <mainClass>myexercises.BinaryAdd</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
