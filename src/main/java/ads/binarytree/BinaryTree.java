@@ -3,6 +3,12 @@ package ads.binarytree;
 import static utils.Utils.getNumberLength;
 import java.util.*;
 
+enum Direction {
+    RIGHT,
+    LEFT,
+    OTHER
+}
+
 public class BinaryTree {
     Node root = null;
 
@@ -251,44 +257,44 @@ public class BinaryTree {
     }
 
     public void rotateClockwise() {
-        root = rotateClockwiseBase(this.getRoot(), null, -1);
+        root = rotateClockwiseBase(this.getRoot(), null, Direction.OTHER);
     }
 
-    public Node rotateClockwiseBase(Node currentNode, Node parentNode, int direction) {
+    public Node rotateClockwiseBase(Node currentNode, Node parentNode, Direction direction) {
 
         if (currentNode == null || !currentNode.any()) {
             return null;
         } 
 
         if (currentNode.isRight()){
-            rotateClockwiseBase(currentNode.getRight(), currentNode, 0);
-            currentNode = switchNodes(currentNode, currentNode.getRight(), 0);
+            rotateClockwiseBase(currentNode.getRight(), currentNode, Direction.RIGHT);
+            currentNode = switchNodes(currentNode, currentNode.getRight(), Direction.RIGHT);
         }
 
         if (currentNode.isLeft()){
-            rotateClockwiseBase(currentNode.getLeft(), currentNode, 1);
-            currentNode = switchNodes(currentNode, currentNode.getLeft(), 1);
+            rotateClockwiseBase(currentNode.getLeft(), currentNode, Direction.LEFT);
+            currentNode = switchNodes(currentNode, currentNode.getLeft(), Direction.LEFT);
         }
 
-        if (direction == 0) {
+        if (direction == Direction.RIGHT) {
             parentNode.right = currentNode;
         }
-        else if (direction == 1) {
+        else if (direction == Direction.LEFT) {
             parentNode.left = currentNode;
         }
 
         return currentNode;
     }
 
-    public static Node switchNodes(Node parent, Node child, int direction) {
+    public static Node switchNodes(Node parent, Node child, Direction direction) {
         Node childLeft = child.getLeft();
         Node childRight = child.getRight();
 
-        if (direction == 0) {
+        if (direction == Direction.RIGHT) {
             child.setRight(parent);
             child.setLeft(parent.getLeft());
         }
-        if (direction == 1) {
+        if (direction == Direction.LEFT) {
             child.setLeft(parent);
             child.setRight(parent.getRight());
         }
